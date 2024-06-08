@@ -11,6 +11,20 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const fileRoute = `./blogs/${params.slug}/page.mdx`;
+  const fileContents = await readFile(fileRoute, "utf8");
+  let { data } = matter(fileContents);
+  return {
+    title: data.title + " | Server Side Sundays",
+    description: data.summary,
+  };
+}
+
 export default async function BlogPage({
   params,
 }: {
