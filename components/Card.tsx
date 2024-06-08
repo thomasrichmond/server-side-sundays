@@ -1,3 +1,5 @@
+import NextLink from "next/link";
+
 type TCard = {
   title: string;
   date: Date;
@@ -7,10 +9,10 @@ type TCard = {
 
 function Card({ title, date, summary, route }: TCard) {
   return (
-    <a key={`title-${title}`} href={route}>
+    <NextLink key={`title-${title}`} href={route}>
       <h1>{title}</h1>
       <p>{summary}</p>
-    </a>
+    </NextLink>
   );
 }
 
