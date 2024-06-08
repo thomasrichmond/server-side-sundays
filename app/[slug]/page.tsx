@@ -35,9 +35,11 @@ export default async function BlogPage({
   const fileRoute = `./blogs/${slug}/page.mdx`;
   const fileContents = await readFile(fileRoute, "utf8").catch(notFound);
   const { content, data } = matter(fileContents);
+  const date = new Date();
 
   return (
     <div>
+      <p>{date.toString()}</p>
       <MDXRemote source={content} />
     </div>
   );
