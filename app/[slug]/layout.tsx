@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function BlogLayout({
   children,
 }: {
@@ -7,6 +9,7 @@ export default function BlogLayout({
     <div>
       {children}
       <h1>Hi layout footer</h1>
+      <Link href="/">Server Side Sundays</Link>
     </div>
   );
 }
