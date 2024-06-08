@@ -1,11 +1,36 @@
-import { MDXRemote } from "next-mdx-remote/rsc";
-import { serialize } from "next-mdx-remote/serialize";
+import Card from "@/components/Card";
+import { readFile, readdir } from "fs/promises";
+import matter from "gray-matter";
 
-export default function Home() {
+export default async function Home() {
+  const entries = await readdir("./blogs/", { withFileTypes: true });
+  const blogDirectories = entries.filter((blog) => blog.isDirectory());
+  const blogContent = Promise.all(
+    blogDirectories.map(async (directory) => {
+      return {
+        fileContent: await readFile(`./blogs/${directory.name}/page.mdx`),
+        route: `/${directory.name}`,
+      };
+    })
+  );
+  const cardContent = await blogContent;
+
   return (
     <main className="">
-      {/* //TODO read in local files dynamically, set static paths so no page is rendering */}
-      <h1>hello world</h1>
+      <>
+        {cardContent.map((blog) => {
+          const { data } = matter(blog.fileContent);
+          return (
+            <Card
+              key={`blog-${data.title}`}
+              title={data.title}
+              date={data.date}
+              summary={data.summary}
+              route={blog.route}
+            />
+          );
+        })}
+      </>
     </main>
   );
 }
