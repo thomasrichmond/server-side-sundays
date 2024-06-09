@@ -31,16 +31,21 @@ export default async function BlogPage({
   params: { slug: string };
 }) {
   const { slug } = params;
-
   const fileRoute = `./blogs/${slug}/page.mdx`;
   const fileContents = await readFile(fileRoute, "utf8").catch(notFound);
   const { content, data } = matter(fileContents);
-  const date = new Date();
+  let blogComponents = {};
+  try {
+    blogComponents = await import(`../../blogs/${slug}/components.ts`);
+  } catch (e: any) {
+    if (e.code !== "MODULE_NOT_FOUND") {
+      throw e;
+    }
+  }
 
   return (
     <div>
-      <p>{date.toString()}</p>
-      <MDXRemote source={content} />
+      <MDXRemote source={content} components={blogComponents} />
     </div>
   );
 }
