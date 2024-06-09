@@ -17,7 +17,7 @@ export async function generateMetadata({
   params: { slug: string };
 }) {
   const fileRoute = `./blogs/${params.slug}/page.mdx`;
-  const fileContents = await readFile(fileRoute, "utf8");
+  const fileContents = await readFile(fileRoute, "utf8").catch(notFound);
   let { data } = matter(fileContents);
   return {
     title: data.title + " | Server Side Sundays",
