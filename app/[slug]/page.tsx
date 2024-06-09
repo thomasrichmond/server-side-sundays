@@ -20,7 +20,7 @@ export async function generateMetadata({
   const fileContents = await readFile(fileRoute, "utf8").catch(notFound);
   let { data } = matter(fileContents);
   return {
-    title: data.title + " | Server Side Sundays",
+    title: `${data.title} | Server Side Sundays`,
     description: data.summary,
   };
 }
