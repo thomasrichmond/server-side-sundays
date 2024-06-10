@@ -16,10 +16,12 @@ export default async function Home() {
   const cardContent = await blogContent;
 
   return (
-    <main className="">
-      <>
+    <main className="py-8 h-full">
+      <div className="flex flex-col gap-10">
         {cardContent.map((blog) => {
-          const { data } = matter(blog.fileContent);
+          const { data, content } = matter(blog.fileContent);
+          const readTime = Math.ceil(content.split(" ").length / 238);
+
           return (
             <Card
               key={`blog-${data.title}`}
@@ -27,10 +29,11 @@ export default async function Home() {
               date={data.date}
               summary={data.summary}
               route={blog.route}
+              readTime={readTime}
             />
           );
         })}
-      </>
+      </div>
     </main>
   );
 }

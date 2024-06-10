@@ -1,3 +1,4 @@
+import BlogFooter from "@/components/BlogFooter";
 import Link from "next/link";
 
 export default function BlogLayout({
@@ -6,10 +7,9 @@ export default function BlogLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <main className="pt-8">
       {children}
-      <h1>Hi layout footer</h1>
-      <Link href="/">Server Side Sundays</Link>
-    </div>
+      <BlogFooter />
+    </main>
   );
 }
