@@ -8,3 +8,7 @@
 pre {
   @apply p-4 rounded-xl;
 }
+
+::selection {
+  @apply bg-red-200;
+}
