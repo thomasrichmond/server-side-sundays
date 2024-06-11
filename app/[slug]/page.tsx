@@ -2,6 +2,7 @@ import { readdir, readFile } from "fs/promises";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
+import rehypePrettyCode from "rehype-pretty-code";
 
 export async function generateStaticParams() {
   const entries = await readdir("./blogs/", { withFileTypes: true });
@@ -45,7 +46,15 @@ export default async function BlogPage({
 
   return (
     <div>
-      <MDXRemote source={content} components={blogComponents} />
+      <MDXRemote
+        source={content}
+        components={blogComponents}
+        options={{
+          mdxOptions: {
+            rehypePlugins: [rehypePrettyCode],
+          },
+        }}
+      />
     </div>
   );
 }
