@@ -3,6 +3,7 @@ import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
 import rehypePrettyCode from "rehype-pretty-code";
+import materialThemeDarker from "tm-themes/themes/material-theme-darker.json";
 
 export async function generateStaticParams() {
   const entries = await readdir("./blogs/", { withFileTypes: true });
@@ -51,7 +52,14 @@ export default async function BlogPage({
         components={blogComponents}
         options={{
           mdxOptions: {
-            rehypePlugins: [rehypePrettyCode],
+            rehypePlugins: [
+              [
+                rehypePrettyCode,
+                {
+                  theme: materialThemeDarker,
+                },
+              ],
+            ],
           },
         }}
       />
