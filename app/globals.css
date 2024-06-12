@@ -6,9 +6,39 @@
 @tailwind utilities;
 
 pre {
-  @apply p-4 rounded-xl;
+  @apply rounded-xl py-4 flex overflow-hidden overflow-x-scroll;
 }
 
 ::selection {
   @apply text-white bg-red-400;
+}
+
+pre [data-highlighted-line] {
+  background: rgba(200, 200, 255, 0.106);
+}
+
+pre [data-line] {
+  border-left-width: 2px;
+  border-left-color: transparent;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 14px;
+}
+
+code {
+  counter-reset: line;
+}
+
+code > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1rem;
+  margin-right: 2rem;
+  text-align: right;
+  color: gray;
+}
+
+span [data-line] {
+  font-size: 12px;
 }
