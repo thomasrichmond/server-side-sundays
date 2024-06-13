@@ -3,9 +3,9 @@ import NextLink from "next/link";
 
 function Header() {
   return (
-    <header className="flex flex-row justify-between">
+    <header className="flex flex-row justify-between items-center">
       <NextLink href="/">
-        <h1 className="font-montserrat text-4xl bg-gradient-to-r from-red-500 to-blue-500 inline-block text-transparent bg-clip-text">
+        <h1 className="font-montserrat text-2xl bg-gradient-to-r from-red-500 to-blue-500 inline-block text-transparent bg-clip-text">
           Server Side Sundays
         </h1>
       </NextLink>

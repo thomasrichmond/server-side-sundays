@@ -1,3 +1,4 @@
+import Link from "@/components/Link";
 import { readdir, readFile } from "fs/promises";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -36,6 +37,12 @@ export default async function BlogPage({
   const fileRoute = `./blogs/${slug}/page.mdx`;
   const fileContents = await readFile(fileRoute, "utf8").catch(notFound);
   const { content, data } = matter(fileContents);
+  const blogDate = new Date(data.date).toLocaleDateString("en-AU", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
   let blogComponents = {};
   try {
     blogComponents = await import(`../../blogs/${slug}/components.ts`);
@@ -46,23 +53,32 @@ export default async function BlogPage({
   }
 
   return (
-    <div>
-      <MDXRemote
-        source={content}
-        components={blogComponents}
-        options={{
-          mdxOptions: {
-            rehypePlugins: [
-              [
-                rehypePrettyCode,
-                {
-                  theme: materialThemeDarker,
-                },
+    <div className="flex flex-col gap-8">
+      <div>
+        <h2 className=" font-montserrat  text-4xl ">{data.title}</h2>
+        <p className="font-merriweather italic ">{blogDate}</p>
+      </div>
+      <div>
+        <MDXRemote
+          source={content}
+          components={{
+            Link,
+            ...blogComponents,
+          }}
+          options={{
+            mdxOptions: {
+              rehypePlugins: [
+                [
+                  rehypePrettyCode,
+                  {
+                    theme: materialThemeDarker,
+                  },
+                ],
               ],
-            ],
-          },
-        }}
-      />
+            },
+          }}
+        />
+      </div>
     </div>
   );
 }

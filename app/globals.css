@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat:wght@900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,900;1,900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -13,6 +12,18 @@ pre {
   @apply text-white bg-red-400;
 }
 
+p,
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-merriweather leading-7;
+}
+
+/* * Code embed styling  */
 pre [data-highlighted-line] {
   background: rgba(200, 200, 255, 0.106);
 }
@@ -40,5 +51,5 @@ code > [data-line]::before {
 }
 
 span [data-line] {
-  font-size: 12px;
+  @apply text-xs;
 }
