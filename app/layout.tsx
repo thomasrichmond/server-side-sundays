@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Server Side Sundays",
@@ -18,6 +18,7 @@ export default function RootLayout({
       <body className="max-w-4xl mx-auto py-8">
         <Header />
         {children}
+        <Analytics />
       </body>
     </html>
   );

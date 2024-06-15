@@ -23,6 +23,20 @@ h6 {
   @apply font-merriweather leading-7;
 }
 
+.markdown {
+  p,
+  button,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  figure {
+    @apply pb-7;
+  }
+}
+
 /* * Code embed styling  */
 pre [data-highlighted-line] {
   background: rgba(200, 200, 255, 0.106);

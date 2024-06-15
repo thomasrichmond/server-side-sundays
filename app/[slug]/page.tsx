@@ -58,7 +58,7 @@ export default async function BlogPage({
         <h2 className=" font-montserrat  text-4xl ">{data.title}</h2>
         <p className="font-merriweather italic ">{blogDate}</p>
       </div>
-      <div>
+      <div className="markdown">
         <MDXRemote
           source={content}
           components={{
