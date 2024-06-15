@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 pre {
-  @apply rounded-xl py-4 flex overflow-hidden overflow-x-scroll;
+  @apply rounded-xl py-4 overflow-hidden overflow-x-scroll;
 }
 
 ::selection {
