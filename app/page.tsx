@@ -13,7 +13,14 @@ export default async function Home() {
       };
     })
   );
-  const cardContent = await blogContent;
+  const parsedBlog = await blogContent;
+  const cardContent = parsedBlog.sort(function (a, b) {
+    const { data: blogA } = matter(a.fileContent);
+    const { data: blogB } = matter(b.fileContent);
+    const dateB: any = new Date(blogB.date);
+    const dateA: any = new Date(blogA.date);
+    return dateB - dateA;
+  });
 
   return (
     <main className="py-8 h-full">
