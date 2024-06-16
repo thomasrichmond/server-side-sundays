@@ -19,7 +19,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+li {
   @apply font-merriweather leading-7;
 }
 
@@ -32,8 +33,15 @@ h6 {
   h4,
   h5,
   h6,
-  figure {
+  figure,
+  hr,
+  ul,
+  ol {
     @apply pb-7;
+  }
+
+  ol {
+    @apply list-decimal p-[revert] block pb-7;
   }
 }
 
