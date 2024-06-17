@@ -13,13 +13,14 @@ export default async function Home() {
       };
     })
   );
+
   const parsedBlog = await blogContent;
+
   const cardContent = parsedBlog.sort(function (a, b) {
-    const { data: blogA } = matter(a.fileContent);
-    const { data: blogB } = matter(b.fileContent);
-    const dateB: any = new Date(blogB.date);
-    const dateA: any = new Date(blogA.date);
-    return dateB - dateA;
+    return (
+      new Date(matter(b.fileContent).data.date).getTime() -
+      new Date(matter(a.fileContent).data.date).getTime()
+    );
   });
 
   return (

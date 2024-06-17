@@ -43,6 +43,10 @@ li {
   ol {
     @apply list-decimal p-[revert] block pb-7;
   }
+
+  h2 {
+    @apply text-xl font-bold;
+  }
 }
 
 /* * Code embed styling  */
