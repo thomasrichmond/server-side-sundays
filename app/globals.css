@@ -4,6 +4,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .button-primary {
+  }
+
+  .button-secondary {
+  }
+
+  .button-action {
+  }
+}
+
 pre {
   @apply rounded-xl py-4 overflow-hidden overflow-x-scroll;
 }
@@ -37,7 +48,7 @@ li {
   hr,
   ul,
   ol {
-    @apply pb-7;
+    @apply mb-7;
   }
 
   ol {

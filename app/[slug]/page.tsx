@@ -1,3 +1,4 @@
+import Button from "@/components/Button";
 import Link from "@/components/Link";
 import { readdir, readFile } from "fs/promises";
 import matter from "gray-matter";
@@ -63,6 +64,7 @@ export default async function BlogPage({
           source={content}
           components={{
             Link,
+            Button,
             ...blogComponents,
           }}
           options={{
